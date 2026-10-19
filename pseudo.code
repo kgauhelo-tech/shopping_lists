@@ -1,58 +1,164 @@
 START Program
+    DECLARE Registration
+    DECLARE Login
+    DECLARE UpdateProfile
+    DECLARE AddNewList
+    DECLARE AddNewListItem
 
-    DECLARE Name
-    DECLARE Surname
-    DECLARE CellNumber
-    DECLARE Email
-    DECLARE Password
 
-    INPUT Name
-    IF Name != null
-        save Name
-    ELSE IF Name == null
-        prompt the user to input their name
-    END ELSE
-    END IF
-
-    INPUT surname
-    IF surname != null
-        save Surname
-    ELSE IF surname == null
-        prompt the user to input their name
-    END ELSE
-    END IF
-
-    INPUT CellNumber
-    IF CellNumber != null
-        save CellNumber
-    ELSE IF CellNumber == null
-        prompt the user to input their name
-    END ELSE
-    END IF
+    // Registration Page
+    START Registration
     
-    INPUT Email
-    IF Email != null
-        IF Email is valid
-            save Email
+        DECLARE Name
+        DECLARE Surname
+        DECLARE CellNumber
+        DECLARE Email
+        DECLARE Password
+
+        INPUT Name
+        IF Name != null
+            save Name
+        ELSE IF Name == null
+            prompt the user to input their name
+        END ELSE
+        END IF
+
+        INPUT surname
+        IF surname != null
+            save Surname
+        ELSE IF surname == null
+            prompt the user to input their name
+        END ELSE
+        END IF
+
+        INPUT CellNumber
+        IF CellNumber != null
+            save CellNumber
+        ELSE IF CellNumber == null
+            prompt the user to input their name
+        END ELSE
+        END IF
+
+        INPUT Email
+        IF Email != null
+            IF Email is valid
+                save Email
+            ELSE
+                prompt user to reenter the Email
+        ELSE IF Email == null
+            prompt the user to input their name
+        END ELSE
+        END IF
+
+        INPUT Password
+        IF Password != null
+            IF Password is valid
+                save Password
+            ELSE 
+        ELSE IF Password == null
+            prompt the user to input their name
+        END ELSE
+        END IF
+
+        IF Name != null && Surname != null && CellNumber != null && Email != null && Password != null 
+            save user details
+        END IF
+
+    // Login Page
+    START Login
+        DECLARE Email
+        DECLARE Password
+
+        INPUT Email
+        INPUT Password
+
+        IF Email != null && Password != null
+            IF Email is valid && Password is valid
+                login the user
+                navigate to home page
+            ELSE
+                Allow user to make corrections
+            END ELSE
+            END If
         ELSE
-            prompt user to reenter the Email
-    ELSE IF Email == null
-        prompt the user to input their name
-    END ELSE
-    END IF
+            Notify user
+            Allow user to make make inputs
 
-    INPUT Password
-    IF Password != null
-        IF Password is valid
-            save Password
-        ELSE 
-    ELSE IF Password == null
-        prompt the user to input their name
-    END ELSE
-    END IF
+    // Home Page
+    START AddNewList
+        DECLARE ListName
+        DECLARE DateCreated
+        DECLARE Today
 
-    IF Name != null && Surname != null && CellNumber != null && Email != null && Password != null 
-        save user details
-    END IF
-    
+        IF ListName != null
+            SET ListName
+            save ListName
+            SET DateCreated to Today
+            Save NewList
+        ELSE
+            prompt user to enter ListName
+        
+        END IF
+
+    START AddNewListItem
+        Declare NewListItem: {}
+        DECLARE Name
+        DECLARE Image
+        DECLARE Quantity
+        DECLARE Notes
+        DECLARE Category
+
+        INPUT Name
+        INPUT Image
+        INPUT Notes
+        INPUT Quantity
+        INPUT Category
+
+        NewListItem.Name = Name
+        NewListItem.Category = Category
+        NewListItem.Notes = Notes
+        NewListItem.QuQuantity =Quantity
+        NewListItem.Image = Image
+
+        IF NewListItem != null
+            save NewListItem
+            
+
+    // Profile Page
+    START UpdateProfile
+        DECLARE Name
+        DECLARE NewName
+
+        DECLARE Surname
+        DECLARE NewSurname
+
+        DECLARE CellNumber
+        DECLARE NewCellNumber
+
+        DECLARE Email
+        DECLARE NewEmail
+
+        DECLARE Password
+        DECLARE NewPassword
+
+        IF NewName != null && NewName != Name
+            SET Name to NewName
+        END IF
+
+        IF NewSurname != null && NewSurname != NewSurname
+            SET Name to NewSurname
+        END IF
+
+        IF NewCellNumber != null && NewCellNumber != CellNumber
+            SET CellNumber to NewCellNumber
+        END IF
+
+        IF NewEmail != null && NewName != Email
+            SET Email to NewEmail
+        END IF
+
+        IF NewPassword != null && NewPassword != Name
+            SET Password to NewPassword
+        END IF
+
 END
