@@ -43,7 +43,7 @@ A shopping list application using ReactTS and json-server that allows users to c
 
 # Deliverables
 
-- Design:
+- Design: https://www.figma.com/design/OxRmsqgqXd8eeYTTogsnn0/Designs?node-id=383-2&t=xBf8HJoQBohSL9ho-1
 - Step-by-step:
 - Pseudocode:
 - UI Implementation

@@ -23,4 +23,8 @@
   - Another button for adding items to the list, and upon being clicked, it will direct the user to the item creation page.
   - Upon clicking on a shopping list item, the user will be directed to the list item details page
 
-- The user will be able to navigate to teh Profile Page from the navigation menu
+- The user will be able to navigate to the Profile Page from the navigation bar
+  - On the Profile page, the user will be able to view their details and be able to update them, once they have registered and logged in.
+  - If the user has not logged in, they will not be able to navigate to the profile page and will be prompted to login
+  - A button for editing profile details will be on the page, and upon clicking it, the user will be navigated to the Profile Update page.
+  - To update their password, they will have to confirm their current password
