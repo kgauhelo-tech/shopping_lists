@@ -1,0 +1,19 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+#app-container {
+  position: relative;
+  min-height: calc(100vh - 160px);
+  padding-bottom: 160px;
+
+  @media (min-width: 768px) {
+    min-height: calc(100vh - 100px);
+    padding-bottom: 100px;
+  }
+}
+
+#scrollable {
+  padding-top: 90px;
+  overflow: hidden;
+}

@@ -1,0 +1,143 @@
+:root {
+  --page-bg: #0b1b3d;
+  --content-bg: #07407d;
+  --text-color: #ffffff;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+
+  margin-top: 20px;
+
+  height: 60px;
+  width: calc(100vw - 20px);
+  padding: 0 10px;
+
+  display: flex;
+
+  @media (min-width: 768px) {
+    padding: 0;
+    width: 100vw;
+  }
+}
+
+.glass-effect {
+  @media screen and (max-width: 1024px) {
+    padding: 0 20px;
+  }
+  @media screen and (max-width: 425px) {
+    padding: 0 5px;
+  }
+  position: relative;
+  margin: 0 auto;
+  background-color: var(--page-bg);
+  width: 100%;
+
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.15);
+
+  border-radius: 999px;
+  height: 100%;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    padding-right: 10px;
+  }
+}
+
+.logo {
+  color: var(--text-color);
+  font-weight: bold;
+
+  @media screen and (max-width: 1024px) {
+    padding: 10px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding-left: 20px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 150px;
+
+  color: white;
+  background-color: var(--content-bg);
+
+  padding: 5px 15px;
+  gap: 5px;
+  @media (min-width: 768px) {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    width: unset;
+
+    top: unset;
+    right: unset;
+
+    background-color: unset;
+  }
+
+  @media screen and (max-width: 768px) {
+    border-radius: 12px;
+  }
+}
+
+.hidden {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  display: flex;
+
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.activeLink {
+  background-color: rgb(174, 160, 255);
+  color: darkblue;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.hamburger {
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.profile {
+  background-color: var(--content-bg);
+  border-radius: 999px;
+}

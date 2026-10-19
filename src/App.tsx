@@ -1,7 +1,30 @@
+import { Route, Routes } from "react-router";
 import "./App.css";
+import PageNotFound from "./pages/404/PageNotFound";
+import { Profile } from "./pages/Profile";
+import { Register } from "./pages/Auth/Register";
+import { Login } from "./pages/Auth/Login";
+import { Home } from "./pages/Home";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <div id="app-container">
+        <Navbar />
+        <div id="scrollable">
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="contact" element={<Login />} />
+
+            <Route path="cart" element={<Register />} />
+            <Route path="cart" element={<Profile />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default App;
