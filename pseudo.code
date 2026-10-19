@@ -54,5 +54,5 @@ START Program
     IF Name != null && Surname != null && CellNumber != null && Email != null && Password != null 
         save user details
     END IF
-
+    
 END

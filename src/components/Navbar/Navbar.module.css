@@ -1,0 +1,95 @@
+nav {
+  position: fixed;
+  top: 0;
+
+  height: 60px;
+  width: calc(100vw - 20px);
+  padding: 0 10px;
+
+  display: flex;
+
+  background-color: darkblue;
+
+  @media (min-width: 768px) {
+    padding: 0;
+    width: 100vw;
+  }
+}
+
+.nav-container {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+  @media screen and (max-width: 1024px) {
+    padding: 10px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+
+  color: white;
+  background-color: darkblue;
+
+  padding: 5px 10px;
+  gap: 5px;
+  @media (min-width: 768px) {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+
+    top: unset;
+    right: unset;
+
+    background-color: unset;
+  }
+}
+
+.hidden {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.activeLink {
+  background-color: rgb(174, 160, 255);
+  color: darkblue;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.hamburger {
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
