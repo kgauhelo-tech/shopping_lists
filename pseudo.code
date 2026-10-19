@@ -1,0 +1,58 @@
+START Program
+
+    DECLARE Name
+    DECLARE Surname
+    DECLARE CellNumber
+    DECLARE Email
+    DECLARE Password
+
+    INPUT Name
+    IF Name != null
+        save Name
+    ELSE IF Name == null
+        prompt the user to input their name
+    END ELSE
+    END IF
+
+    INPUT surname
+    IF surname != null
+        save Surname
+    ELSE IF surname == null
+        prompt the user to input their name
+    END ELSE
+    END IF
+
+    INPUT CellNumber
+    IF CellNumber != null
+        save CellNumber
+    ELSE IF CellNumber == null
+        prompt the user to input their name
+    END ELSE
+    END IF
+    
+    INPUT Email
+    IF Email != null
+        IF Email is valid
+            save Email
+        ELSE
+            prompt user to reenter the Email
+    ELSE IF Email == null
+        prompt the user to input their name
+    END ELSE
+    END IF
+
+    INPUT Password
+    IF Password != null
+        IF Password is valid
+            save Password
+        ELSE 
+    ELSE IF Password == null
+        prompt the user to input their name
+    END ELSE
+    END IF
+
+    IF Name != null && Surname != null && CellNumber != null && Email != null && Password != null 
+        save user details
+    END IF
+
+END
