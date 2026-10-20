@@ -17,17 +17,19 @@ export const Login = () => {
       <Text variant="h2" style={{ color: "rgb(20, 20, 20)" }}>
         Login
       </Text>
-      <TextInput ref={emailRef} label="Email" onChange={handleValidation} />
-      <TextInput
-        ref={passwordRef}
-        label="Password"
-        onChange={handleValidation}
-      />
-      <Button
-        onClick={handleSubmit}
-        value={"Login"}
-        style={{ marginTop: "20" }}
-      />
+      <div className={styles["input-container"]}>
+        <TextInput ref={emailRef} label="Email" onChange={handleValidation} />
+        <TextInput
+          ref={passwordRef}
+          label="Password"
+          onChange={handleValidation}
+        />
+        <Button
+          onClick={handleSubmit}
+          value={"Login"}
+          style={{ marginTop: "20" }}
+        />
+      </div>
     </div>
   );
 };

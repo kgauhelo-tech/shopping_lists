@@ -121,7 +121,7 @@ nav {
 
 .activeLink {
   background-color: rgb(174, 160, 255);
-  color: darkblue;
+  color: var(--content-bg);
   font-weight: bold;
   border-radius: 8px;
 }

@@ -6,15 +6,17 @@ import { Register } from "./pages/Auth/Register";
 import { Login } from "./pages/Auth/Login";
 import { Home } from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
+import { ListCard } from "./components/List/ListCard";
 
 function App() {
   return (
     <>
       <div id="app-container">
         <Navbar />
+
         <div id="scrollable">
           <Routes>
-            <Route index element={<Home />} />
+            <Route index element={<Login />} />
             <Route path="contact" element={<Login />} />
 
             <Route path="cart" element={<Register />} />

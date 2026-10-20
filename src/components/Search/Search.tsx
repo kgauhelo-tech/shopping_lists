@@ -13,11 +13,15 @@ export const SearchComponent: React.FC<SearchbarProps> = ({
 }) => {
   return (
     <div className={styles["search-bar"]}>
-      <Text variant="p" style={{ color: "rgba(20,20,20)", padding: 10 }}>
-        Search
-      </Text>
-      <input ref={ref} type="text" className={styles["search-input"]} />
-      <Search onClick={onSearch} className={styles["search-icon"]} />
+      <input
+        ref={ref}
+        type="text"
+        placeholder="Search lists"
+        className={styles["search-input"]}
+      />
+      <div className={styles["icon-container"]}>
+        <Search onClick={onSearch} className={styles["search-icon"]} />
+      </div>
     </div>
   );
 };
