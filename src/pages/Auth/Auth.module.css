@@ -1,15 +1,79 @@
-.auth-container {
-  background-color: white;
+:root {
+  --page-bg: #0b1b3d;
+  --content-bg: #07407d;
+  --text-color: #ffffff;
+  --content-dark: #04284d;
+}
 
-  width: 500px;
-  min-height: 200px;
-
-  max-height: 1000px;
-
-  border-radius: 12px;
+/* Login Page Styling */
+.login-container {
+  margin: 0 auto;
   padding: 20px;
+  width: calc(100vw - 40px);
+
+  @media screen and (min-width: 768px) {
+    width: calc(90vw - 40px);
+  }
+}
+
+.login-content {
+  background-color: var(--content-bg);
+  border-radius: 16px;
+  color: var(--text-color);
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
+  width: calc(100% - 40px);
+
+  padding: 20px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    height: 400px;
+  }
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 425px) {
+    gap: 16px;
+    border-right: 1px solid var(--text-color);
+    height: 70%;
+    padding-right: 50px;
+    justify-content: center;
+  }
+}
+
+.input-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media screen and (min-width: 768px) {
+  }
+}
+
+/* Registration page styling */
+.reg-container {
+  margin: 0 auto;
+  padding: 20px;
+  width: calc(100vw - 40px);
+
+  @media screen and (min-width: 768px) {
+    width: calc(90vw - 40px);
+  }
 }

@@ -16,56 +16,58 @@ export const Register = () => {
   const handleValidation = () => {};
   const handleSubmit = () => {};
   return (
-    <form className={styles["auth-container"]}>
-      <Text variant="h2" style={{ color: "rgb(20, 20, 20)" }}>
-        Register
-      </Text>
+    <div className={styles["reg-container"]}>
+      <form className={styles["reg-content"]}>
+        <Text variant="h2" style={{ color: "rgb(20, 20, 20)" }}>
+          Register
+        </Text>
 
-      <TextInput
-        ref={nameRef}
-        label="Name"
-        name="firstName"
-        onChange={handleValidation}
-      />
+        <TextInput
+          ref={nameRef}
+          label="Name"
+          name="firstName"
+          onChange={handleValidation}
+        />
 
-      <TextInput
-        ref={surnameRef}
-        label="Surname"
-        name="surname"
-        onChange={handleValidation}
-      />
+        <TextInput
+          ref={surnameRef}
+          label="Surname"
+          name="surname"
+          onChange={handleValidation}
+        />
 
-      <TextInput
-        ref={cellNumberRef}
-        label="Phone Number"
-        name="phoneNumber"
-        onChange={handleValidation}
-      />
+        <TextInput
+          ref={cellNumberRef}
+          label="Phone Number"
+          name="phoneNumber"
+          onChange={handleValidation}
+        />
 
-      <TextInput ref={emailRef} label="Email" onChange={handleValidation} />
+        <TextInput ref={emailRef} label="Email" onChange={handleValidation} />
 
-      <TextInput
-        ref={passwordRef}
-        label="Password"
-        name="password"
-        onChange={handleValidation}
-      />
+        <TextInput
+          ref={passwordRef}
+          label="Password"
+          name="password"
+          onChange={handleValidation}
+        />
 
-      <TextInput
-        ref={confirmPasswordRef}
-        label="Password"
-        name="confirmPassword"
-        onChange={handleValidation}
-      />
+        <TextInput
+          ref={confirmPasswordRef}
+          label="Password"
+          name="confirmPassword"
+          onChange={handleValidation}
+        />
 
-      <Button
-        value={"Register"}
-        style={{ marginTop: "20" }}
-        onClick={handleSubmit}
-      />
-      <Text style={{ color: "blue" }}>
-        By signing up, you accept our <span>Terms and conditions</span>
-      </Text>
-    </form>
+        <Button
+          value={"Register"}
+          style={{ marginTop: "20" }}
+          onClick={handleSubmit}
+        />
+        <Text style={{ color: "blue" }}>
+          By signing up, you accept our <span>Terms and conditions</span>
+        </Text>
+      </form>
+    </div>
   );
 };

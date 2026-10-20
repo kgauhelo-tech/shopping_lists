@@ -43,7 +43,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive ? `${styles.link} ${styles.activeLink}` : styles.link
               }
-              to="/services"
+              to="/login"
             >
               <Text>Login</Text>
             </NavLink>
@@ -52,7 +52,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive ? `${styles.link} ${styles.activeLink}` : styles.link
               }
-              to="/contact"
+              to="/register"
             >
               <Text>Register</Text>
             </NavLink>

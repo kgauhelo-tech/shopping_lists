@@ -1,3 +1,4 @@
+import Text from "../Text/Text";
 import styles from "./Input.module.css";
 
 import React from "react";
@@ -12,9 +13,8 @@ type TextInputProps = {
   name?: string;
   ref?: React.RefObject<HTMLInputElement | null>;
   type?: string;
+  placeholder?: string;
 };
-
-// Lesson 3 - video 2: 3:01
 
 export const TextInput: React.FC<TextInputProps> = ({
   id,
@@ -26,11 +26,12 @@ export const TextInput: React.FC<TextInputProps> = ({
   name,
   ref,
   type,
+  placeholder,
 }) => {
   return (
     <div className={styles["input-container"]}>
       <label htmlFor={id} className={styles["input-label"]}>
-        {label}
+        <Text style={{ color: "white", fontWeight: 500 }}>{label}</Text>
       </label>
 
       {type === "textarea" ? (
@@ -40,6 +41,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           id={id}
           name={name}
           className={styles["input-area"]}
+          placeholder={placeholder}
         ></textarea>
       ) : (
         <input
@@ -51,6 +53,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           className={styles.input}
           name={name}
           ref={ref}
+          placeholder={placeholder}
         />
       )}
 

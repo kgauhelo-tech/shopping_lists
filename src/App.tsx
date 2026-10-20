@@ -16,11 +16,11 @@ function App() {
 
         <div id="scrollable">
           <Routes>
-            <Route index element={<Login />} />
-            <Route path="contact" element={<Login />} />
+            <Route index element={<Home />} />
+            <Route path="login" element={<Login />} />
 
-            <Route path="cart" element={<Register />} />
-            <Route path="cart" element={<Profile />} />
+            <Route path="register" element={<Register />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
