@@ -1,7 +1,8 @@
 :root {
-  --primary-color: #fff;
-  --content-bg: #202c3c;
-  --page-bg: #0c121e;
+  --page-bg: #0b1b3d;
+  --content-bg: #07407d;
+  --text-color: #ffffff;
+  --content-dark: #04284d;
 }
 
 .page_container {
@@ -24,7 +25,7 @@
 }
 
 .text_cont {
-  color: var(--primary-color);
+  color: var(--text-color);
   text-align: center;
 
   display: flex;

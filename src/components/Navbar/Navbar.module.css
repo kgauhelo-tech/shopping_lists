@@ -2,6 +2,7 @@
   --page-bg: #0b1b3d;
   --content-bg: #07407d;
   --text-color: #ffffff;
+  --content-dark: #04284d;
 }
 
 nav {
@@ -124,6 +125,11 @@ nav {
   color: var(--content-bg);
   font-weight: bold;
   border-radius: 8px;
+}
+
+.activeProfileLink {
+  color: var(--text-color);
+  background-color: var(--content-bg);
 }
 
 .link:hover {

@@ -21,6 +21,10 @@ export const Register = () => {
         <div className={styles["left-container"]}>
           <Text variant="h2">Register</Text>
           <Text>Pleased to have you!</Text>
+
+          <Text style={{ color: "#fff", opacity: 0.8 }}>
+            By signing up, you accept our <span>Terms and conditions</span>
+          </Text>
         </div>
 
         <div className={styles["right-container"]}>
@@ -112,9 +116,6 @@ export const Register = () => {
             style={{ marginTop: "20" }}
             onClick={handleSubmit}
           />
-          <Text style={{ color: "#fff", opacity: 0.8 }}>
-            By signing up, you accept our <span>Terms and conditions</span>
-          </Text>
         </div>
       </form>
     </div>

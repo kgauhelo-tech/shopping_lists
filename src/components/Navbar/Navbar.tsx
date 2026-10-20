@@ -31,7 +31,6 @@ const Navbar = () => {
 
           <div className={`${styles.links} ${isOpen ? "" : styles.hidden}`}>
             <NavLink
-              onClick={handleIconClick}
               className={({ isActive }) =>
                 isActive ? `${styles.link} ${styles.activeLink}` : styles.link
               }
@@ -41,7 +40,6 @@ const Navbar = () => {
             </NavLink>
 
             <NavLink
-              onClick={handleIconClick}
               className={({ isActive }) =>
                 isActive ? `${styles.link} ${styles.activeLink}` : styles.link
               }
@@ -51,7 +49,6 @@ const Navbar = () => {
             </NavLink>
 
             <NavLink
-              onClick={handleIconClick}
               className={({ isActive }) =>
                 isActive ? `${styles.link} ${styles.activeLink}` : styles.link
               }
@@ -61,11 +58,10 @@ const Navbar = () => {
             </NavLink>
 
             <NavLink
-              onClick={handleIconClick}
               to={"/profile"}
               className={({ isActive }) =>
                 isActive
-                  ? `${styles.link} ${styles.activeLink} ${styles.profile}`
+                  ? `${styles.link} ${styles.activeProfileLink} ${styles.profile}`
                   : `${styles.link} ${styles.profile}`
               }
             >

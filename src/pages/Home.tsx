@@ -1,6 +1,7 @@
 import { useRef, type MouseEvent } from "react";
 import { ListContainer } from "../components/List/ListContainer";
 import { Searchbar } from "../components/Search/Searchbar";
+import { ListItemContainer } from "../components/ListItem/ListItemContainer";
 
 export const Home = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -8,8 +9,8 @@ export const Home = () => {
 
   return (
     <div>
-      <Searchbar ref={searchRef} onSearch={handleSearch} />
-      <ListContainer></ListContainer>
+      {/* <Searchbar ref={searchRef} onSearch={handleSearch} /> */}
+      <ListItemContainer />
     </div>
   );
 };

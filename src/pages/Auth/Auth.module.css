@@ -90,10 +90,17 @@
   background-color: var(--content-bg);
   padding: 20px;
   border-radius: 16px;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media screen and (min-width: 426px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .left-container {
@@ -101,6 +108,14 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+
+  @media screen and (min-width: 426px) {
+    gap: 16px;
+    justify-content: center;
+    border-bottom: none;
+    width: unset;
+  }
 }
 
 .right-container {
@@ -108,4 +123,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media screen and (min-width: 426px) {
+    width: 50%;
+    border-left: 1px solid var(--text-color);
+    padding-left: 50px;
+  }
 }
