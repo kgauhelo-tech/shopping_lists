@@ -6,7 +6,6 @@ import { Register } from "./pages/Auth/Register";
 import { Login } from "./pages/Auth/Login";
 import { Home } from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
-import { ListCard } from "./components/List/ListCard";
 
 function App() {
   return (

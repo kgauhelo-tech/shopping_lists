@@ -1,18 +1,82 @@
-import React, { type RefObject } from "react";
+import React, { useReducer, useRef, useState, type RefObject } from "react";
 import { Searchbar } from "../Search/Searchbar";
 import styles from "./Actions.module.css";
-import { Button } from "../Input/Button";
+import Text from "../Text/Text";
+import { Add, ArrowLeftCircle, Search, Sort, X } from "reicon-react";
+import { ContentContainer } from "../ContentContainer";
 
 type ActionsProps = {
+  hasBackButton?: boolean;
+  heading: string;
   ref: RefObject<HTMLInputElement | null>;
   onSearch: () => void;
+  isMoreActionsOpen: boolean;
 };
 
-export const Actions: React.FC<ActionsProps> = ({ ref, onSearch }) => {
-  return (
-    <div>
-      <Searchbar ref={ref} onSearch={onSearch}></Searchbar>
-      <Button>New List</Button>
-    </div>
+export const Actions: React.FC<ActionsProps> = ({
+  ref,
+  onSearch,
+  heading,
+  hasBackButton,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleIconClick = () => {
+    isOpen ? setIsOpen(false) : setIsOpen(true);
+  };
+
+  return hasBackButton ? (
+    <ContentContainer className={styles["actions-container"]}>
+      <div className={styles["actions-content"]}>
+        <div className={styles["actions-left"]}>
+          <div className={styles["back-btn"]}>
+            <ArrowLeftCircle />
+          </div>
+          <Text variant="h2">{heading}</Text>
+        </div>
+        <div className={styles["actions-right"]}>
+          <Searchbar ref={ref} onSearch={onSearch} />
+          <div className={styles["more-actions"]}>
+            <Sort />
+          </div>
+          <button className={styles["action-btn"]}>
+            <Text variant="h3">New List</Text>
+          </button>
+        </div>
+        <div className={styles["sm-actions"]}>
+          <div className={styles["more-actions"]} onClick={handleIconClick}>
+            {isOpen ? <X /> : <Add />}
+          </div>
+        </div>
+      </div>
+
+      <div className={isOpen ? `${styles.actions}` : `${styles.hidden}`}>
+        <Searchbar ref={ref} onSearch={onSearch} />
+        <div className={styles["more-actions"]}>
+          <Sort /> <Text>Sort by:</Text>
+        </div>
+        <button className={styles["action-btn"]}>
+          <Text variant="h3">New List</Text>
+        </button>
+      </div>
+    </ContentContainer>
+  ) : (
+    <ContentContainer className={styles["actions-container"]}>
+      <div className={styles["actions-content"]}>
+        <div className={styles["actions-left"]}>
+          <Text variant="h2">{heading}</Text>
+        </div>
+
+        <div className={styles["actions-right"]}>
+          <Searchbar ref={ref} onSearch={onSearch} />
+          <div className={styles["more-actions"]}>
+            <Sort />
+          </div>
+          <button className={styles["action-btn"]}>
+            <Text variant="h3">New List</Text>
+          </button>
+        </div>
+      </div>
+    </ContentContainer>
   );
 };

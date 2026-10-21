@@ -1,0 +1,103 @@
+:root {
+  --page-bg: #0b1b3d;
+  --content-bg: #07407d;
+  --text-color: #ffffff;
+  --content-dark: #04284d;
+}
+
+.action-btn {
+  background-color: var(--content-bg);
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 40px);
+  gap: 16px;
+  padding: 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
+}
+
+.actions-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.back-btn {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--content-bg);
+  flex-shrink: 0;
+}
+
+.actions-right {
+  display: none;
+  gap: 16px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.more-actions {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--content-bg);
+  color: var(--text-color);
+  border-radius: 100%;
+  flex-shrink: 0;
+}
+
+.sm-actions {
+  display: flex;
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  width: 65%;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #04294d54;
+  padding: 12px;
+  border-radius: 8px;
+  @media screen and (max-width: 375px) {
+    width: 100%;
+  }
+}
+
+.hidden {
+  display: none;
+}

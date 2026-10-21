@@ -6,10 +6,12 @@
 }
 
 .search-container {
-  width: 100vw;
-  height: 60px;
-  background-color: rgb(1, 0, 75);
+  height: 40px;
   display: flex;
+
+  @media screen and (min-width: 768px) {
+    width: unset;
+  }
 }
 
 .searchbar-container {
