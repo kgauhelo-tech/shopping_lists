@@ -6,12 +6,12 @@ import React from "react";
 type TextInputProps = {
   id?: string;
   value?: string | number;
-  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   style?: React.CSSProperties;
   label: string;
   error?: string;
   name?: string;
-  ref?: React.RefObject<HTMLInputElement | null>;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
   textAreaRef?: React.RefObject<HTMLTextAreaElement | null>;
   type?: string;
   placeholder?: string;
@@ -25,7 +25,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   label,
   error,
   name,
-  ref,
+  inputRef,
   type,
   placeholder,
   textAreaRef,
@@ -55,7 +55,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           value={value}
           className={styles.input}
           name={name}
-          ref={ref}
+          ref={inputRef}
           placeholder={placeholder}
         />
       )}

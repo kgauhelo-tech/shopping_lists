@@ -6,6 +6,9 @@ import { Register } from "./pages/Auth/Register";
 import { Login } from "./pages/Auth/Login";
 import { Home } from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
+import { ListDetails } from "./pages/Lists/ListDetails";
+import { AddList } from "./pages/Lists/AddList";
+import { AddListItem } from "./pages/ListItem/AddListItem";
 
 function App() {
   return (
@@ -16,10 +19,13 @@ function App() {
         <div id="scrollable">
           <Routes>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="addList" element={<AddList />} />
+            <Route path="lists/:id" element={<ListDetails />} />
+            <Route path="lists/:id/addItem" element={<AddListItem />} />
 
-            <Route path="register" element={<Register />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>

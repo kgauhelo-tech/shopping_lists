@@ -33,15 +33,10 @@ export const ListContainer = () => {
 
   return (
     <>
-      <Actions
-        hasBackButton={false}
-        heading={"Shopping Lists"}
-        ref={searchRef}
-        onSearch={handleSearch}
-        isMoreActionsOpen={false}
-      ></Actions>
       {items.length === 0 ? (
-        <Text>No shopping list items found</Text>
+        <ContentContainer className={styles["empty-state"]}>
+          <Text>No shopping list items found</Text>
+        </ContentContainer>
       ) : (
         <ContentContainer>
           <div className={styles["list-container"]}>

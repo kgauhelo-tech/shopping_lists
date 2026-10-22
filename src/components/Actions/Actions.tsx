@@ -4,13 +4,14 @@ import styles from "./Actions.module.css";
 import Text from "../Text/Text";
 import { Add, ArrowLeftCircle, Search, Sort, X } from "reicon-react";
 import { ContentContainer } from "../ContentContainer";
+import { useNavigate } from "react-router";
 
 type ActionsProps = {
   hasBackButton?: boolean;
   heading: string;
   ref: RefObject<HTMLInputElement | null>;
   onSearch: () => void;
-  isMoreActionsOpen: boolean;
+  buttonNavigatesTo: string;
 };
 
 export const Actions: React.FC<ActionsProps> = ({
@@ -18,11 +19,21 @@ export const Actions: React.FC<ActionsProps> = ({
   onSearch,
   heading,
   hasBackButton,
+  buttonNavigatesTo,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleIconClick = () => {
+  const handleMoreActions = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
+  };
+
+  const handleCreate = () => {
+    navigate(`/${buttonNavigatesTo}`);
+  };
+
+  const handleNavigateBack = () => {
+    navigate(-1);
   };
 
   return hasBackButton ? (
@@ -30,7 +41,7 @@ export const Actions: React.FC<ActionsProps> = ({
       <div className={styles["actions-content"]}>
         <div className={styles["actions-left"]}>
           <div className={styles["back-btn"]}>
-            <ArrowLeftCircle />
+            <ArrowLeftCircle onClick={handleNavigateBack} />
           </div>
           <Text variant="h2">{heading}</Text>
         </div>
@@ -39,12 +50,12 @@ export const Actions: React.FC<ActionsProps> = ({
           <div className={styles["more-actions"]}>
             <Sort />
           </div>
-          <button className={styles["action-btn"]}>
+          <button className={styles["action-btn"]} onClick={handleCreate}>
             <Text variant="h3">New List</Text>
           </button>
         </div>
         <div className={styles["sm-actions"]}>
-          <div className={styles["more-actions"]} onClick={handleIconClick}>
+          <div className={styles["more-actions"]} onClick={handleMoreActions}>
             {isOpen ? <X /> : <Add />}
           </div>
         </div>
@@ -55,7 +66,7 @@ export const Actions: React.FC<ActionsProps> = ({
         <div className={styles["more-actions"]}>
           <Sort /> <Text>Sort by:</Text>
         </div>
-        <button className={styles["action-btn"]}>
+        <button onClick={handleCreate} className={styles["action-btn"]}>
           <Text variant="h3">New List</Text>
         </button>
       </div>
@@ -72,10 +83,26 @@ export const Actions: React.FC<ActionsProps> = ({
           <div className={styles["more-actions"]}>
             <Sort />
           </div>
-          <button className={styles["action-btn"]}>
+          <button className={styles["action-btn"]} onClick={handleCreate}>
             <Text variant="h3">New List</Text>
           </button>
         </div>
+        <div className={styles["sm-actions"]}>
+          <div className={styles["more-actions"]} onClick={handleMoreActions}>
+            {isOpen ? <X /> : <Add />}
+          </div>
+        </div>
+      </div>
+
+      <div className={isOpen ? `${styles.actions}` : `${styles.hidden}`}>
+        <Searchbar ref={ref} onSearch={onSearch} />
+        <div className={styles["more-actions"]}>
+          <Sort />
+          <Text>Sort by:</Text>
+        </div>
+        <button onClick={handleCreate} className={styles["action-btn"]}>
+          <Text variant="h3">New List</Text>
+        </button>
       </div>
     </ContentContainer>
   );

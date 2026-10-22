@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { Actions } from "../components/Actions/Actions";
+import { useAppSelector } from "../redux/hooks";
+import { ListContainer } from "../components/List/ListContainer";
 
 export const Home = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -15,12 +17,14 @@ export const Home = () => {
       }}
     >
       <Actions
-        isMoreActionsOpen={true}
         heading="Shopping Lists"
-        hasBackButton={true}
+        hasBackButton={false}
         ref={searchRef}
         onSearch={handleSearch}
-      ></Actions>
+        buttonNavigatesTo="addList"
+      />
+
+      <ListContainer></ListContainer>
     </div>
   );
 };
