@@ -12,6 +12,7 @@ type TextInputProps = {
   error?: string;
   name?: string;
   ref?: React.RefObject<HTMLInputElement | null>;
+  textAreaRef?: React.RefObject<HTMLTextAreaElement | null>;
   type?: string;
   placeholder?: string;
 };
@@ -27,6 +28,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   ref,
   type,
   placeholder,
+  textAreaRef,
 }) => {
   return (
     <div className={styles["input-container"]}>
@@ -42,6 +44,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           name={name}
           className={styles["input-area"]}
           placeholder={placeholder}
+          ref={textAreaRef}
         ></textarea>
       ) : (
         <input

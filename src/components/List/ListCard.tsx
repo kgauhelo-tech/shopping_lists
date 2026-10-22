@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu } from "reicon-react";
 export type ListProps = {
   name: string;
   desc: string;
-  dateCreated: number;
+  dateCreated: string;
   imgLink?: string;
   id: string;
   navigateToListItems: (id: string) => void;

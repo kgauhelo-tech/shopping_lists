@@ -19,10 +19,12 @@ const initialState: listState = {
   error: null,
 };
 
+const url = "http://localhost:3000/lists";
+
 // Third add logic to fetch data
 // first, test whether this works, then add more to make sure it retrieves data for a specific user
 export const fetchLists = createAsyncThunk("lists/fetchLists", async () => {
-  const response = await fetch("http://localhost:3000/lists");
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error("Failed to fetch lists from JSON Server");
@@ -54,8 +56,41 @@ export const listsSlice = createSlice({
         state.status = "failed";
         state.error =
           action.error.message || "Failed to retrieve data from server";
+      })
+      .addCase(createList.fulfilled, (state, action: PayloadAction<List>) => {
+        ((state.error = null),
+          (state.status = "succeeded"),
+          state.items.push(action.payload));
+      })
+      .addCase(createList.pending, (state) => {
+        state.error = null;
+        state.status = "loading";
+      })
+      .addCase(createList.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Failed to add data to server";
       });
   },
 });
+
+export const createList = createAsyncThunk(
+  "lists/createList",
+  async (newListData: List) => {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newListData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Updating server data");
+    }
+
+    const savedList: List = await response.json();
+    return savedList;
+  },
+);
 
 export default listsSlice.reducer;

@@ -6,6 +6,7 @@ export type List = {
   category: string;
   imgLink: string;
   userId: string;
+  notes: string;
 };
 
 export type ListItem = {

@@ -2,53 +2,62 @@ import { useNavigate } from "react-router";
 import { ContentContainer } from "../ContentContainer";
 import { ListCard } from "./ListCard";
 import styles from "./List.module.css";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { fetchLists } from "../../redux/slices/ListSlice";
+import { useEffect, useRef } from "react";
+import { Actions } from "../Actions/Actions";
+import Text from "../Text/Text";
 
-export const ListContainer: React.FC = ({}) => {
+export const ListContainer = () => {
+  const dispatch = useAppDispatch();
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+  const handleSearch = () => {};
+  const navigateToListItems = (id: string) => {
+    navigate(`/lists/${id}`);
+  };
 
-  const navigateToListItems = () => {};
+  const { items, status, error } = useAppSelector((state) => state.lists);
+
+  useEffect(() => {
+    dispatch(fetchLists());
+  }, [dispatch]);
+
+  if (status === "loading") {
+    return <div>Loading Shopping Lists from server</div>;
+  }
+
+  if (status === "failed") {
+    return <div>Error loading lists {error}</div>;
+  }
 
   return (
-    <ContentContainer>
-      {/* <div id={styles["list-cont"]}>
-        {stock &&
-          stock.length > 0 &&
-          stock.map((product) => {
-            return (
+    <>
+      <Actions
+        hasBackButton={false}
+        heading={"Shopping Lists"}
+        ref={searchRef}
+        onSearch={handleSearch}
+        isMoreActionsOpen={false}
+      ></Actions>
+      {items.length === 0 ? (
+        <Text>No shopping list items found</Text>
+      ) : (
+        <ContentContainer>
+          <div className={styles["list-container"]}>
+            {items.map((list) => (
               <ListCard
-                name={"List 1"}
-                desc={product.desc}
-                imgLink={product.img}
-                id={product.id}
-                dateCreated={product.dateCreated}
-                navigateToListItems={() => {
-                  navigate(`listItems/${product.id}`);
-                }}
+                name={list.name}
+                desc={list.description}
+                dateCreated={list.dateCreated}
+                id={list.id}
+                key={list.id}
+                navigateToListItems={navigateToListItems}
               />
-            );
-          })}
-      </div> */}
-
-      <div className={styles["list-container"]}>
-        <ListCard
-          name={"List One Name"}
-          desc={
-            "This is the description for the first list item of the shopping list. I want to see how it will look with text embedded in it"
-          }
-          dateCreated={Date.now()}
-          navigateToListItems={() => {}}
-          id=""
-        ></ListCard>
-        <ListCard
-          name={"List One Name"}
-          desc={
-            "This is the description for the first list item of the shopping list. I want to see how it will look with text embedded in it"
-          }
-          dateCreated={Date.now()}
-          navigateToListItems={() => {}}
-          id=""
-        ></ListCard>
-      </div>
-    </ContentContainer>
+            ))}
+          </div>
+        </ContentContainer>
+      )}
+    </>
   );
 };
