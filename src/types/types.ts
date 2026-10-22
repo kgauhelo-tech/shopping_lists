@@ -4,7 +4,6 @@ export type List = {
   description: string;
   dateCreated: string;
   category: string;
-  imgLink: string;
   userId: string;
   notes: string;
 };

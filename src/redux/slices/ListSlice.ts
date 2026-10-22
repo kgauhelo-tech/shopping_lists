@@ -69,6 +69,17 @@ export const listsSlice = createSlice({
       .addCase(createList.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Failed to add data to server";
+      })
+      .addCase(updateList.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id,
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+      })
+      .addCase(deleteList.fulfilled, (state, action) => {
+        state.items = state.items.filter((item) => item.id !== action.payload);
       });
   },
 });
@@ -90,6 +101,39 @@ export const createList = createAsyncThunk(
 
     const savedList: List = await response.json();
     return savedList;
+  },
+);
+
+export const updateList = createAsyncThunk(
+  "lists/updateList",
+  async (updatedList: List) => {
+    const response = await fetch(`${url}/${updatedList.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedList),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update the list");
+    }
+
+    const data: List = await response.json();
+    return data;
+  },
+);
+
+export const deleteList = createAsyncThunk(
+  "lists/deleteLists",
+  async (id: string) => {
+    const response = await fetch(`${url}/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete the list");
+    }
+
+    return id;
   },
 );
 
