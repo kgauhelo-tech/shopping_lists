@@ -87,6 +87,7 @@ export const Login = () => {
 
           <div>
             <TextInput
+              isTextObscured={true}
               inputRef={passwordRef}
               label="Password"
               placeholder="●●●●●●●●●●"

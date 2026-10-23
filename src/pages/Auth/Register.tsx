@@ -138,6 +138,7 @@ export const Register = () => {
               color: "rgba(255, 255, 255, 0.9)",
               fontSize: "16px",
             }}
+            isTextObscured={true}
             inputRef={passwordRef}
             label="Password"
             name="password"

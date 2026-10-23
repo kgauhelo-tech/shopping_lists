@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import listReducer from "./slices/ListSlice";
 import userReducer from "./slices/authSlice";
-// import listItemsReducer from "./slices/ListItemSlice";
+import listItemsReducer from "./slices/ListItemSlice";
 
 // after creating the slice and exporting its properties, next your create the store
 export const store = configureStore({
   reducer: {
     lists: listReducer,
     users: userReducer,
+    listItems: listItemsReducer,
   },
 });
 

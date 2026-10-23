@@ -17,9 +17,15 @@ export const ListCard: React.FC<ListProps> = ({
   desc,
   imgLink,
   navigateToListItems,
+  dateCreated,
 }) => {
   return (
-    <article className={styles["list-card"]}>
+    <article
+      className={styles["list-card"]}
+      onClick={() => {
+        navigateToListItems(id);
+      }}
+    >
       <div className={styles["image-container"]}>
         <div
           onClick={() => navigateToListItems(id)}
@@ -44,14 +50,10 @@ export const ListCard: React.FC<ListProps> = ({
             <Text>{desc}</Text>
           </div>
         </div>
-        <div className={styles["indicator-container"]}>
-          <span
-            onClick={() => {
-              navigateToListItems(id);
-            }}
-          >
-            <ArrowUpRight className={styles["arrow"]} />
-          </span>
+        <div className={styles["date"]}>
+          <Text style={{ fontSize: "14px" }}>
+            {dateCreated.length < 0 ? dateCreated : "Date Unavailable"}
+          </Text>
         </div>
       </div>
     </article>

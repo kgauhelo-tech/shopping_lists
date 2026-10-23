@@ -80,6 +80,15 @@ button {
   background-color: "white";
   color: "#07407d";
   height: "40px";
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 /* Registration page styling */

@@ -10,9 +10,8 @@ import Text from "../Text/Text";
 
 export const ListContainer = () => {
   const dispatch = useAppDispatch();
-  const searchRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
-  const handleSearch = () => {};
+
   const navigateToListItems = (id: string) => {
     navigate(`/lists/${id}`);
   };

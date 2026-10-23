@@ -6,10 +6,12 @@ import { ContentContainer } from "../components/ContentContainer";
 import { fetchUsers } from "../redux/slices/authSlice";
 
 export const Profile = () => {
-  const { users, status, error } = useAppSelector((state) => state.users);
+  const { users, status, error, activeUserId } = useAppSelector(
+    (state) => state.users,
+  );
   const dispatch = useAppDispatch();
 
-  const currentUser = users[0];
+  const currentUser = users.find((user) => user.id === activeUserId);
 
   if (status === "loading") return <p>Loading profile...</p>;
 

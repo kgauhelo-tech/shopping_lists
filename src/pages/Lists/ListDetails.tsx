@@ -1,5 +1,10 @@
 import React from "react";
+import { ViewListItems } from "../ListItem/ViewListItems";
 
 export const ListDetails = () => {
-  return <div>ListDetails</div>;
+  return (
+    <div>
+      <ViewListItems />
+    </div>
+  );
 };

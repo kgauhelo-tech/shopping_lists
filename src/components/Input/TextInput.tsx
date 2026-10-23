@@ -15,6 +15,7 @@ type TextInputProps = {
   textAreaRef?: React.RefObject<HTMLTextAreaElement | null>;
   type?: string;
   placeholder?: string;
+  isTextObscured?: boolean;
 };
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -29,14 +30,14 @@ export const TextInput: React.FC<TextInputProps> = ({
   type,
   placeholder,
   textAreaRef,
+  isTextObscured,
 }) => {
-  return (
-    <div className={styles["input-container"]}>
-      <label htmlFor={id} className={styles["input-label"]}>
-        <Text style={{ color: "white", fontWeight: 500 }}>{label}</Text>
-      </label>
-
-      {type === "textarea" ? (
+  if (type === "textarea") {
+    return (
+      <div className={styles["input-container"]}>
+        <label htmlFor={id} className={styles["input-label"]}>
+          <Text style={{ color: "white", fontWeight: 500 }}>{label}</Text>
+        </label>
         <textarea
           value={value}
           onChange={onChange}
@@ -46,9 +47,17 @@ export const TextInput: React.FC<TextInputProps> = ({
           placeholder={placeholder}
           ref={textAreaRef}
         ></textarea>
-      ) : (
+      </div>
+    );
+  }
+  if (isTextObscured) {
+    return (
+      <div className={styles["input-container"]}>
+        <label htmlFor={id} className={styles["input-label"]}>
+          <Text style={{ color: "white", fontWeight: 500 }}>{label}</Text>
+        </label>
         <input
-          type="text"
+          type="password"
           id={id}
           onChange={onChange}
           style={style}
@@ -58,7 +67,27 @@ export const TextInput: React.FC<TextInputProps> = ({
           ref={inputRef}
           placeholder={placeholder}
         />
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles["input-container"]}>
+      <label htmlFor={id} className={styles["input-label"]}>
+        <Text style={{ color: "white", fontWeight: 500 }}>{label}</Text>
+      </label>
+
+      <input
+        type="text"
+        id={id}
+        onChange={onChange}
+        style={style}
+        value={value}
+        className={styles.input}
+        name={name}
+        ref={inputRef}
+        placeholder={placeholder}
+      />
 
       {error && <span className={styles["input-error"]}>{error}</span>}
     </div>
