@@ -75,6 +75,13 @@
   }
 }
 
+button {
+  margin-top: 20px;
+  background-color: "white";
+  color: "#07407d";
+  height: "40px";
+}
+
 /* Registration page styling */
 .reg-container {
   margin: 0 auto;

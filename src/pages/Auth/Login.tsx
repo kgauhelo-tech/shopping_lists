@@ -1,33 +1,70 @@
-import { useRef, useState } from "react";
-import { Button } from "../../components/Input/Button";
+import { useEffect, useRef, useState } from "react";
 import { TextInput } from "../../components/Input/TextInput";
 import Text from "../../components/Text/Text";
 import styles from "./Auth.module.css";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useNavigate } from "react-router";
+import { fetchUsers, setActiveUser } from "../../redux/slices/authSlice";
 
 export const Login = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const [isEmailValid, setIsEmailValid] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  // Display validation status upon submitting
-  // If valid, login, else: show error message
-  const handleEmailValidation = () => {
-    // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    // let currentValue = emailRef.current?.value;
-    // let value;
-    // if (currentValue) value = emailRegex.test(currentValue);
-    // value
-    //   ? setIsEmailValid("Email is valid!")
-    //   : setIsEmailValid("Make sure your email is valid");
-  };
-  const handlePasswordValidation = () => {
-    passwordRef.current?.value;
+  const { users, status, error } = useAppSelector((state) => state.users);
+  const handleValidation = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setErrorMessage(null);
+    const password = passwordRef.current?.value?.trim() || "";
+    const email = emailRef.current?.value?.trim() || "";
+
+    const errors: string[] = [];
+    if (!password) errors.push("Password must be at least 8 characters long");
+    if (!email) errors.push("Email must not be empty");
+
+    if (errors.length > 0) {
+      setErrorMessage(errors.join("\n"));
+      return;
+    }
+
+    handleLogin(email, password);
   };
 
-  const handleSubmit = () => {};
+  const handleLogin = (email: string, password: string) => {
+    setIsLoading(true);
+
+    const currentUser = users.find(
+      (user) => user.email === email && user.password === password,
+    );
+
+    setIsLoading(false);
+
+    if (!currentUser) {
+      setErrorMessage("Invalid email or password");
+      return;
+    }
+
+    dispatch(setActiveUser(currentUser.id));
+
+    setErrorMessage(null);
+    navigate("/home");
+  };
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchUsers());
+    }
+  }, [dispatch, status]);
+
+  if (status === "loading")
+    return <Text>Loading user authentication information</Text>;
 
   return (
-    <div className={styles["login-container"]}>
+    <form onSubmit={handleValidation} className={styles["login-container"]}>
       <div className={styles["login-content"]}>
         <div className={styles["text-container"]}>
           <Text variant="h2">Login</Text>
@@ -36,7 +73,7 @@ export const Login = () => {
         <div className={styles["input-container"]}>
           <div>
             <TextInput
-              ref={emailRef}
+              inputRef={emailRef}
               label="Email"
               placeholder="example@email.com"
               style={{
@@ -45,13 +82,12 @@ export const Login = () => {
                 color: "rgba(255, 255, 255, 0.9)",
                 fontSize: "16px",
               }}
-              onChange={handleEmailValidation}
             />
           </div>
 
           <div>
             <TextInput
-              ref={passwordRef}
+              inputRef={passwordRef}
               label="Password"
               placeholder="●●●●●●●●●●"
               style={{
@@ -60,20 +96,22 @@ export const Login = () => {
                 color: "rgba(255, 255, 255, 0.9)",
                 fontSize: "16px",
               }}
-              onChange={handlePasswordValidation}
             />
           </div>
-          <Button
-            onClick={handleSubmit}
-            value={"Login"}
+          <button
+            type="submit"
             style={{
-              marginTop: "20",
+              marginTop: "20px",
               backgroundColor: "white",
               color: "#07407d",
+              height: "40px",
             }}
-          />
+          >
+            <Text>{isLoading ? "Logging in" : "Login"}</Text>
+          </button>
         </div>
+        {errorMessage && <Text>{errorMessage}</Text>}
       </div>
-    </div>
+    </form>
   );
 };

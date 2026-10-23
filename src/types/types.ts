@@ -23,6 +23,5 @@ export type user = {
   surname: string;
   cellNumber: string;
   email: string;
-  password: string;
-  isLoggedIn: () => boolean;
+  password?: string;
 };
