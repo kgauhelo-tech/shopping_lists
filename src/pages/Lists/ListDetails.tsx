@@ -6,11 +6,14 @@ import { ContentContainer } from "../../components/ContentContainer";
 import { useNavigate, useParams } from "react-router";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteList } from "../../redux/slices/ListSlice";
+import { Actions } from "../../components/Actions/Actions";
+import { useRef } from "react";
 
 export const ListDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const searchRef = useRef(null);
 
   const handleDeleteList = async () => {
     if (!params.id) return;
@@ -25,6 +28,9 @@ export const ListDetails = () => {
   const handleEditList = () => {
     navigate(`/editList/${params.id}`);
   };
+
+  const handleSearchListItems = () => {};
+
   return (
     <div>
       <ContentContainer className={styles["top-level"]}>
@@ -45,6 +51,13 @@ export const ListDetails = () => {
         </div>
         <div></div>
       </ContentContainer>
+      <Actions
+        heading="List Items"
+        ref={searchRef}
+        onSearch={handleSearchListItems}
+        buttonNavigatesTo={`/lists/${params.id}/addItem`}
+        btnValue="Add Item"
+      />
       <ViewListItems />
     </div>
   );

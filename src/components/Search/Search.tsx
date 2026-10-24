@@ -1,5 +1,4 @@
 import styles from "./Search.module.css";
-import Text from "../Text/Text";
 import { Search } from "reicon-react";
 
 export type SearchbarProps = {
@@ -16,7 +15,7 @@ export const SearchComponent: React.FC<SearchbarProps> = ({
       <input
         ref={ref}
         type="text"
-        placeholder="Search lists"
+        placeholder="Search items"
         className={styles["search-input"]}
       />
       <div className={styles["icon-container"]}>

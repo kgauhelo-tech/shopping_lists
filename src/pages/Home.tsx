@@ -5,8 +5,6 @@ import { ListContainer } from "../components/List/ListContainer";
 import { ContentContainer } from "../components/ContentContainer";
 import Text from "../components/Text/Text";
 import styles from "./pages.module.css";
-import { ArrowLeftCircle } from "reicon-react";
-import { Button } from "../components/Input/Button";
 
 export const Home = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -20,6 +18,7 @@ export const Home = () => {
     return (
       <div style={{}}>
         <Actions
+          btnValue="Add List"
           heading="Shopping Lists"
           hasBackButton={false}
           ref={searchRef}

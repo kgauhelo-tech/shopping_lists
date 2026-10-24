@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { updateList } from "../../redux/slices/ListSlice";
 import { useNavigate, useParams } from "react-router";
 import { ArrowLeftCircle } from "reicon-react";
+import type { List } from "../../types/types";
 
 export const EditList = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -19,7 +20,7 @@ export const EditList = () => {
   const { id } = useParams<{ id: string }>();
 
   const targetList = useAppSelector((state) =>
-    state.lists.items.find((list) => list.id === id),
+    state.lists.items.find((list: List) => list.id === id),
   );
 
   useEffect(() => {

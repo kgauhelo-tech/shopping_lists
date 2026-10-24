@@ -43,7 +43,16 @@ export const ListItemContainer = () => {
   if (status === "loading") return <Text>Fetching list items...</Text>;
 
   if (status === "failed")
-    return <Text>Failed to load list items. {error}</Text>;
+    return (
+      <Text
+        variant="h2"
+        style={{ color: "var(--text-color)", paddingTop: "10px" }}
+      >
+        {items.length === 0
+          ? "There are not list items for this list"
+          : `${error}`}
+      </Text>
+    );
 
   return (
     <ContentContainer className={styles["list-item-container"]}>
@@ -53,6 +62,7 @@ export const ListItemContainer = () => {
         onSearch={handleSearch}
         buttonNavigatesTo="addItem"
         hasBackButton={true}
+        btnValue="Add Item"
       />
       {items.length === 0 ? (
         <ContentContainer className={styles["empty-state"]}>

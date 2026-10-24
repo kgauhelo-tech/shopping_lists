@@ -12,6 +12,7 @@ type ActionsProps = {
   ref: RefObject<HTMLInputElement | null>;
   onSearch: () => void;
   buttonNavigatesTo: string;
+  btnValue: string;
 };
 
 export const Actions: React.FC<ActionsProps> = ({
@@ -20,6 +21,7 @@ export const Actions: React.FC<ActionsProps> = ({
   heading,
   hasBackButton,
   buttonNavigatesTo,
+  btnValue,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ export const Actions: React.FC<ActionsProps> = ({
   };
 
   const handleCreate = () => {
-    navigate(`/${buttonNavigatesTo}`);
+    navigate(buttonNavigatesTo);
   };
 
   const handleNavigateBack = () => {
@@ -51,7 +53,7 @@ export const Actions: React.FC<ActionsProps> = ({
             <Sort />
           </div>
           <button className={styles["action-btn"]} onClick={handleCreate}>
-            <Text variant="h3">New List</Text>
+            <Text variant="h3">{btnValue}</Text>
           </button>
         </div>
         <div className={styles["sm-actions"]}>
@@ -67,7 +69,7 @@ export const Actions: React.FC<ActionsProps> = ({
           <Sort /> <Text>Sort by:</Text>
         </div>
         <button onClick={handleCreate} className={styles["action-btn"]}>
-          <Text variant="h3">New List</Text>
+          <Text variant="h3">{btnValue}</Text>
         </button>
       </div>
     </ContentContainer>
@@ -84,7 +86,7 @@ export const Actions: React.FC<ActionsProps> = ({
             <Sort />
           </div>
           <button className={styles["action-btn"]} onClick={handleCreate}>
-            <Text variant="h3">New List</Text>
+            <Text variant="h3">{btnValue}</Text>
           </button>
         </div>
         <div className={styles["sm-actions"]}>
@@ -101,7 +103,7 @@ export const Actions: React.FC<ActionsProps> = ({
           <Text>Sort by:</Text>
         </div>
         <button onClick={handleCreate} className={styles["action-btn"]}>
-          <Text variant="h3">New List</Text>
+          <Text variant="h3">{btnValue}</Text>
         </button>
       </div>
     </ContentContainer>

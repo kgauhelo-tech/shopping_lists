@@ -47,7 +47,7 @@ export const ListContainer = () => {
                 dateCreated={list.dateCreated}
                 id={list.id}
                 key={list.id}
-                navigateToListItems={navigateToListItems}
+                navigateToListItems={() => navigateToListItems(list.id)}
               />
             ))}
           </div>
