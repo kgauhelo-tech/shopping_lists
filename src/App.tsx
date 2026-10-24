@@ -10,6 +10,7 @@ import { ListDetails } from "./pages/Lists/ListDetails";
 import { AddList } from "./pages/Lists/AddList";
 import { AddListItem } from "./pages/ListItem/AddListItem";
 import { ProtectedRoute } from "./ProtectedRoutes";
+import { EditList } from "./pages/Lists/EditList";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="addList" element={<AddList />} />
             <Route path="lists/:id" element={<ListDetails />} />
             <Route path="lists/:id/addItem" element={<AddListItem />} />
+            <Route path="editList/:id" element={<EditList />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

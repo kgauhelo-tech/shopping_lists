@@ -34,4 +34,46 @@ button {
   height: 40px;
   color: var(--content-dark);
   font-weight: bold;
+  border: none;
+}
+
+.top-level {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+
+  @media screen and (max-width: 425px) {
+    padding: 10px 20px;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+.back-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-color);
+}
+.back {
+  background-color: var(--content-bg);
+  padding: 10px;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;
+}
+
+.btn-cont {
+  display: flex;
+  gap: 16px;
+}
+
+.delete-btn {
+  border: none;
+  height: 40px;
+  background-color: #ff2226;
+  color: var(--text-color);
+}
+
+.edit-btn {
+  background-color: var(--text-color);
 }

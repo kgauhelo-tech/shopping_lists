@@ -101,7 +101,7 @@ const url = "http://localhost:3000/listItems";
 
 const createListItem = createAsyncThunk(
   "listItems/createListItem",
-  async (newListItem: ListItem) => {
+  async (newListItem: Omit<ListItem, "id">) => {
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -117,8 +117,8 @@ const createListItem = createAsyncThunk(
 
 const fetchListItems = createAsyncThunk(
   "listItems/fetchListItems",
-  async () => {
-    const response = await fetch(url);
+  async (listId: string) => {
+    const response = await fetch(`${url}?listId=${listId}`);
     if (!response.ok) throw new Error("Failed to fetch List Items");
 
     const data: ListItem[] = await response.json();

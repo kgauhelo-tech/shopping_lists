@@ -33,7 +33,9 @@ export const ListContainer = () => {
     <>
       {items.length === 0 ? (
         <ContentContainer className={styles["empty-state"]}>
-          <Text>No shopping lists found</Text>
+          <Text variant="h3" style={{ color: "white" }}>
+            No shopping lists found
+          </Text>
         </ContentContainer>
       ) : (
         <ContentContainer>

@@ -6,7 +6,7 @@ import Text from "../../components/Text/Text";
 import { useAppDispatch } from "../../redux/hooks";
 import { createList } from "../../redux/slices/ListSlice";
 import { useNavigate } from "react-router";
-import { ArrowDownLeftCircle, ArrowLeftCircle } from "reicon-react";
+import { ArrowLeftCircle } from "reicon-react";
 
 export const AddList = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -33,13 +33,10 @@ export const AddList = () => {
     try {
       await dispatch(
         createList({
-          id: crypto.randomUUID(),
           name,
           description,
           notes: notes || "",
           category,
-          imgLink: "",
-          userId: "user_123",
           dateCreated: new Date().toISOString(),
         }),
       ).unwrap();

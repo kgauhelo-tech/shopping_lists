@@ -1,7 +1,7 @@
 import styles from "./ListItem.module.css";
 
 import { useEffect, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useParams, useSearchParams } from "react-router";
 
 import { ListItemCard } from "./ListItemCard";
 import { ContentContainer } from "../ContentContainer";
@@ -15,23 +15,32 @@ import { Actions } from "../Actions/Actions";
 export const ListItemContainer = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const searchRef = useRef<HTMLInputElement | null>(null);
 
-  const navigateToListItems = (id: string) => {
-    navigate(`/lists/${id}`);
+  const navigateToListItems = (itemId: string) => {
+    navigate(`/lists/${id}/items/${itemId}`);
   };
 
   const { items, status, error } = useAppSelector((state) => state.listItems);
 
   const handleSearch = () => {
-    const query = useSearchParams();
+    const query = searchRef.current?.value || "";
+    if (query) {
+      setSearchParams({ search: query });
+    } else {
+      setSearchParams({});
+    }
   };
 
   useEffect(() => {
-    dispatch(fetchListItems());
-  }, [dispatch]);
+    if (id) {
+      dispatch(fetchListItems(id));
+    }
+  }, [dispatch, id]);
 
-  if (status === "loading") return <Text>Fetching list items</Text>;
+  if (status === "loading") return <Text>Fetching list items...</Text>;
 
   if (status === "failed")
     return <Text>Failed to load list items. {error}</Text>;
@@ -47,8 +56,12 @@ export const ListItemContainer = () => {
       />
       {items.length === 0 ? (
         <ContentContainer className={styles["empty-state"]}>
-          <Text>No shopping list items found</Text>
-          <Text>Add shopping list items</Text>
+          <Text variant="h2" style={{ color: "white" }}>
+            No shopping list items found
+          </Text>
+          <Text variant="h3" style={{ color: "white" }}>
+            Add shopping list items
+          </Text>
         </ContentContainer>
       ) : (
         items.map((listItem: ListItem) => (

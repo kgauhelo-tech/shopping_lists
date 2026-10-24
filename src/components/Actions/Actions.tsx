@@ -1,8 +1,8 @@
-import React, { useReducer, useRef, useState, type RefObject } from "react";
+import React, { useState, type RefObject } from "react";
 import { Searchbar } from "../Search/Searchbar";
 import styles from "./Actions.module.css";
 import Text from "../Text/Text";
-import { Add, ArrowLeftCircle, Search, Sort, X } from "reicon-react";
+import { Add, ArrowLeftCircle, Sort, X } from "reicon-react";
 import { ContentContainer } from "../ContentContainer";
 import { useNavigate } from "react-router";
 

@@ -4,6 +4,7 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
 
 // First define the shape of the state you're managing
 interface listState {
@@ -22,16 +23,26 @@ const initialState: listState = {
 const url = "http://localhost:3000/lists";
 
 // Third add logic to fetch data
-// first, test whether this works, then add more to make sure it retrieves data for a specific user
-export const fetchLists = createAsyncThunk("lists/fetchLists", async () => {
-  const response = await fetch(url);
+export const fetchLists = createAsyncThunk(
+  "lists/fetchLists",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const activeUserId = state.users.activeUserId;
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch lists from JSON Server");
-  }
-  const data: List[] = await response.json();
-  return data;
-});
+    if (!activeUserId) {
+      throw new Error("No active user found");
+    }
+
+    const response = await fetch(`${url}?userId=${activeUserId}`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch lists from JSON Server");
+    }
+
+    const data: List[] = await response.json();
+    return data;
+  },
+);
 
 // Fourth create reducers for the actions that should happen to the data
 export const listsSlice = createSlice({
@@ -86,17 +97,29 @@ export const listsSlice = createSlice({
 
 export const createList = createAsyncThunk(
   "lists/createList",
-  async (newListData: List) => {
+  async (newListData: Omit<List, "id" | "userId">, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const activeUserId = state.users.activeUserId;
+
+    if (!activeUserId) {
+      throw new Error("No active user found");
+    }
+
+    const listToCreate = {
+      ...newListData,
+      userId: activeUserId,
+    };
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newListData),
+      body: JSON.stringify(listToCreate),
     });
 
     if (!response.ok) {
-      throw new Error("Updating server data");
+      throw new Error("Failed to create list");
     }
 
     const savedList: List = await response.json();
