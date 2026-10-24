@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { ListDetails } from "./pages/Lists/ListDetails";
 import { AddList } from "./pages/Lists/AddList";
 import { AddListItem } from "./pages/ListItem/AddListItem";
+import { ProtectedRoute } from "./ProtectedRoutes";
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>

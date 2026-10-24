@@ -106,6 +106,7 @@ const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const data: user[] = await response.json();
   return data;
 });
+
 const updateUser = createAsyncThunk(
   "users/updateUser",
   async (updatedUser: user) => {
@@ -120,6 +121,7 @@ const updateUser = createAsyncThunk(
     return data;
   },
 );
+
 const addUser = createAsyncThunk("users/addUser", async (newUser: user) => {
   const response = await fetch(url, {
     method: "POST",
@@ -132,6 +134,7 @@ const addUser = createAsyncThunk("users/addUser", async (newUser: user) => {
   const data = await response.json();
   return data;
 });
+
 const deleteUser = createAsyncThunk("users/deleteUser", async (id: string) => {
   const response = await fetch(`${url}/${id}`, {
     method: "DELETE",

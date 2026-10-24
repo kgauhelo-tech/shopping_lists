@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Text from "../components/Text/Text";
+import styles from "./pages.module.css";
 
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { ContentContainer } from "../components/ContentContainer";
 import { fetchUsers } from "../redux/slices/authSlice";
+import { Edit2 } from "reicon-react";
 
 export const Profile = () => {
   const { users, status, error, activeUserId } = useAppSelector(
@@ -13,9 +15,11 @@ export const Profile = () => {
 
   const currentUser = users.find((user) => user.id === activeUserId);
 
-  if (status === "loading") return <p>Loading profile...</p>;
+  if (status === "loading") return <Text>Loading profile...</Text>;
 
-  if (!currentUser) return <p>No user logged in.</p>;
+  if (status === "failed") return <Text>Failed to fetch user {error}</Text>;
+
+  if (!currentUser) return <Text>No user logged in.</Text>;
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -23,7 +27,13 @@ export const Profile = () => {
 
   return (
     <ContentContainer>
-      <div>
+      <div className={styles["actions-container"]}>
+        <button>
+          <Edit2 />
+          <Text>Update Details</Text>
+        </button>
+      </div>
+      <div className={styles["details-container"]}>
         <Text variant="h2">User Profile</Text>
         <Text>
           <strong>Name:</strong> {currentUser.name}

@@ -8,6 +8,7 @@ type CardProps = {
   itemName: string;
   itemDescription: string;
   itemQuantity: string;
+  onClick: () => void;
 };
 
 export const ListItemCard: React.FC<CardProps> = ({
@@ -15,9 +16,10 @@ export const ListItemCard: React.FC<CardProps> = ({
   itemName,
   itemDescription,
   itemQuantity,
+  onClick,
 }) => {
   return (
-    <div className={styles["item-card"]}>
+    <div className={styles["item-card"]} onClick={onClick}>
       <div className={styles["image-container"]}>
         {imgLink.length > 0 ? (
           <img src="" className={styles.image} alt={`image of ${itemName}`} />

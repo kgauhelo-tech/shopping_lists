@@ -4,8 +4,7 @@ import { ListCard } from "./ListCard";
 import styles from "./List.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { fetchLists } from "../../redux/slices/ListSlice";
-import { useEffect, useRef } from "react";
-import { Actions } from "../Actions/Actions";
+import { useEffect } from "react";
 import Text from "../Text/Text";
 
 export const ListContainer = () => {
@@ -34,7 +33,7 @@ export const ListContainer = () => {
     <>
       {items.length === 0 ? (
         <ContentContainer className={styles["empty-state"]}>
-          <Text>No shopping list items found</Text>
+          <Text>No shopping lists found</Text>
         </ContentContainer>
       ) : (
         <ContentContainer>
