@@ -1,19 +1,31 @@
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { useNavigate, useParams } from "react-router";
 import { ContentContainer } from "../../components/ContentContainer";
 import styles from "./ListItem.module.css";
 import { ArrowLeftCircle } from "reicon-react";
 import Text from "../../components/Text/Text";
-import { deleteListItem } from "../../redux/slices/ListItemSlice";
+import {
+  deleteListItem,
+  fetchListItems,
+} from "../../redux/slices/ListItemSlice";
 
 export const ListItemDetails = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { id: listId, itemId } = useParams<{ id: string; itemId: string }>();
 
-  const currentItem = useAppSelector((state) =>
-    state.listItems.items.find((item) => item.id === itemId),
-  );
+  const { items, status } = useAppSelector((state) => state.listItems);
+
+  // 1. Fetch items if store is empty or page was directly refreshed
+  useEffect(() => {
+    if (listId && items.length === 0 && status !== "loading") {
+      dispatch(fetchListItems(listId));
+    }
+  }, [dispatch, listId, items.length, status]);
+
+  // 2. Loose string/number ID matching (String(item.id) === String(itemId))
+  const currentItem = items.find((item) => String(item.id) === String(itemId));
 
   const handleDeleteItem = async () => {
     if (!itemId) return;
@@ -26,12 +38,22 @@ export const ListItemDetails = () => {
   };
 
   const handleEditItem = () => {
-    navigate(`/lists/${listId}/items/${itemId}/edit`);
+    navigate(`/lists/${listId}/updateItem/${itemId}`);
   };
 
   const navigateBack = () => {
     navigate(-1);
   };
+
+  if (status === "loading" && items.length === 0) {
+    return (
+      <ContentContainer className={styles["details"]}>
+        <Text variant="h2" style={{ color: "white" }}>
+          Loading list item...
+        </Text>
+      </ContentContainer>
+    );
+  }
 
   if (!currentItem) {
     return (
@@ -41,7 +63,9 @@ export const ListItemDetails = () => {
             onClick={navigateBack}
             style={{ cursor: "pointer" }}
           />
-          <Text>Item not found.</Text>
+          <Text variant="h3" style={{ color: "white" }}>
+            Item not found.
+          </Text>
         </div>
       </ContentContainer>
     );

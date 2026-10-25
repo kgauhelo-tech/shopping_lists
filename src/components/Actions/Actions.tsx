@@ -4,15 +4,16 @@ import styles from "./Actions.module.css";
 import Text from "../Text/Text";
 import { Add, ArrowLeftCircle, Sort, X } from "reicon-react";
 import { ContentContainer } from "../ContentContainer";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 type ActionsProps = {
   hasBackButton?: boolean;
   heading: string;
-  ref: RefObject<HTMLInputElement | null>;
-  onSearch: () => void;
+  ref?: RefObject<HTMLInputElement | null>;
+  onSearch: (value: string) => void;
   buttonNavigatesTo: string;
   btnValue: string;
+  onSort: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export const Actions: React.FC<ActionsProps> = ({
@@ -22,12 +23,18 @@ export const Actions: React.FC<ActionsProps> = ({
   hasBackButton,
   buttonNavigatesTo,
   btnValue,
+  onSort,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSortOpen, setIsSortOpen] = useState(false);
   const navigate = useNavigate();
 
+  // Read current sortBy value from URL so <select> displays the right option
+  const [searchParams] = useSearchParams();
+  const currentSortBy = searchParams.get("sortBy") || "name";
+
   const handleMoreActions = () => {
-    isOpen ? setIsOpen(false) : setIsOpen(true);
+    setIsOpen((prev) => !prev);
   };
 
   const handleCreate = () => {
@@ -36,6 +43,10 @@ export const Actions: React.FC<ActionsProps> = ({
 
   const handleNavigateBack = () => {
     navigate(-1);
+  };
+
+  const showSort = () => {
+    setIsSortOpen((prev) => !prev);
   };
 
   return hasBackButton ? (
@@ -66,7 +77,12 @@ export const Actions: React.FC<ActionsProps> = ({
       <div className={isOpen ? `${styles.actions}` : `${styles.hidden}`}>
         <Searchbar ref={ref} onSearch={onSearch} />
         <div className={styles["more-actions"]}>
-          <Sort /> <Text>Sort by:</Text>
+          <Text>Sort by:</Text>
+          <select value={currentSortBy} onChange={onSort}>
+            <option value="name">Name</option>
+            <option value="category">category</option>
+            <option value="date">Date Added</option>
+          </select>
         </div>
         <button onClick={handleCreate} className={styles["action-btn"]}>
           <Text variant="h3">{btnValue}</Text>
@@ -83,7 +99,7 @@ export const Actions: React.FC<ActionsProps> = ({
         <div className={styles["actions-right"]}>
           <Searchbar ref={ref} onSearch={onSearch} />
           <div className={styles["more-actions"]}>
-            <Sort />
+            <Sort onClick={showSort} />
           </div>
           <button className={styles["action-btn"]} onClick={handleCreate}>
             <Text variant="h3">{btnValue}</Text>
@@ -96,11 +112,26 @@ export const Actions: React.FC<ActionsProps> = ({
         </div>
       </div>
 
+      <div className={isSortOpen ? `${styles.showSort}` : `${styles.hidden}`}>
+        <div className={styles.modal}>
+          <Text variant="h3">Sort by:</Text>
+          <select value={currentSortBy} onChange={onSort}>
+            <option value="name">Name</option>
+            <option value="category">category</option>
+            <option value="date">Date Added</option>
+          </select>
+        </div>
+      </div>
+
       <div className={isOpen ? `${styles.actions}` : `${styles.hidden}`}>
         <Searchbar ref={ref} onSearch={onSearch} />
         <div className={styles["more-actions"]}>
-          <Sort />
           <Text>Sort by:</Text>
+          <select value={currentSortBy} onChange={onSort}>
+            <option value="name">Name</option>
+            <option value="category">category</option>
+            <option value="date">Date Added</option>
+          </select>
         </div>
         <button onClick={handleCreate} className={styles["action-btn"]}>
           <Text variant="h3">{btnValue}</Text>

@@ -9,10 +9,11 @@ import Navbar from "./components/Navbar/Navbar";
 import { ListDetails } from "./pages/Lists/ListDetails";
 import { AddList } from "./pages/Lists/AddList";
 import { AddListItem } from "./pages/ListItem/AddListItem";
+import { ListItemDetails } from "./pages/ListItem/ListItemDetails";
+import { UpdateListItem } from "./pages/ListItem/UpdateListItem";
 import { ProtectedRoute } from "./ProtectedRoutes";
 import { EditList } from "./pages/Lists/EditList";
 import { UpdateProfile } from "./pages/Profile/UpdateProfile";
-import { UpdateListItem } from "./pages/ListItem/UpdateListItem";
 
 function App() {
   return (
@@ -24,10 +25,18 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="addList" element={<AddList />} />
-            <Route path="lists/:id" element={<ListDetails />} />
             <Route path="editList/:id" element={<EditList />} />
+
+            <Route path="lists/:id" element={<ListDetails />} />
             <Route path="lists/:id/addItem" element={<AddListItem />} />
-            <Route path="updateListItem/:id" element={<UpdateListItem />} />
+            <Route
+              path="lists/:id/items/:itemId"
+              element={<ListItemDetails />}
+            />
+            <Route
+              path="lists/:id/updateItem/:itemId"
+              element={<UpdateListItem />}
+            />
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
