@@ -12,6 +12,7 @@ import { AddListItem } from "./pages/ListItem/AddListItem";
 import { ProtectedRoute } from "./ProtectedRoutes";
 import { EditList } from "./pages/Lists/EditList";
 import { UpdateProfile } from "./pages/Profile/UpdateProfile";
+import { UpdateListItem } from "./pages/ListItem/UpdateListItem";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             <Route path="lists/:id" element={<ListDetails />} />
             <Route path="editList/:id" element={<EditList />} />
             <Route path="lists/:id/addItem" element={<AddListItem />} />
-            {/* <Route path="editList/:id" element={<EditList />} /> */}
+            <Route path="updateListItem/:id" element={<UpdateListItem />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
