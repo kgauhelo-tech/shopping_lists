@@ -31,6 +31,7 @@ form {
 }
 
 button {
+  margin: 0;
   height: 40px;
   color: var(--content-dark);
   font-weight: bold;
@@ -38,22 +39,26 @@ button {
 }
 
 .top-level {
+  width: 100%;
+  padding: 10px 20px 0 20px;
   display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
+  flex-direction: column;
+  gap: 16px;
 
-  @media screen and (max-width: 425px) {
-    padding: 10px 20px;
-    flex-direction: column;
-    flex-grow: 1;
+  @media screen and (min-width: 570px) {
+    width: calc(100% - 40px);
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
+
 .back-container {
   display: flex;
   align-items: center;
   gap: 16px;
   color: var(--text-color);
 }
+
 .back {
   background-color: var(--content-bg);
   padding: 10px;
@@ -64,7 +69,7 @@ button {
 
 .btn-cont {
   display: flex;
-  gap: 16px;
+  gap: 24px;
 }
 
 .delete-btn {
@@ -72,8 +77,11 @@ button {
   height: 40px;
   background-color: #ff2226;
   color: var(--text-color);
+  font-weight: normal;
 }
 
 .edit-btn {
   background-color: var(--text-color);
+  color: var(--content-darks);
+  font-weight: normal;
 }

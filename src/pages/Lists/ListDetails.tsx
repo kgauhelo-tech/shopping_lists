@@ -1,13 +1,12 @@
 import { ArrowLeftCircle } from "reicon-react";
 import { ViewListItems } from "../ListItem/ViewListItems";
-import Text from "../../components/Text/Text";
-import styles from "./Lists.module.css";
 import { ContentContainer } from "../../components/ContentContainer";
 import { useNavigate, useParams } from "react-router";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteList } from "../../redux/slices/ListSlice";
-import { Actions } from "../../components/Actions/Actions";
 import { useRef } from "react";
+import Text from "../../components/Text/Text";
+import styles from "./Lists.module.css";
 
 export const ListDetails = () => {
   const params = useParams();
@@ -41,6 +40,7 @@ export const ListDetails = () => {
           />
           <Text variant="h2">Shopping List details</Text>
         </div>
+
         <div className={styles["btn-cont"]}>
           <button className={styles["delete-btn"]} onClick={handleDeleteList}>
             <Text>Delete list</Text>
@@ -49,15 +49,7 @@ export const ListDetails = () => {
             <Text>Edit List</Text>
           </button>
         </div>
-        <div></div>
       </ContentContainer>
-      <Actions
-        heading="List Items"
-        ref={searchRef}
-        onSearch={handleSearchListItems}
-        buttonNavigatesTo={`/lists/${params.id}/addItem`}
-        btnValue="Add Item"
-      />
       <ViewListItems />
     </div>
   );

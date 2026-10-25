@@ -111,34 +111,35 @@ export const ListItemContainer = () => {
         onSearch={handleSearch}
         onSort={handleSort}
         buttonNavigatesTo="addItem"
-        hasBackButton={true}
         btnValue="Add Item"
       />
-      {sortedItems.length === 0 ? (
-        <ContentContainer className={styles["empty-state"]}>
-          <Text variant="h2" style={{ color: "white" }}>
-            {searchQuery
-              ? "No matching shopping list items found"
-              : "No shopping list items found"}
-          </Text>
-          {!searchQuery && (
-            <Text variant="h3" style={{ color: "white" }}>
-              Add shopping list items
+      <div className={styles.items}>
+        {sortedItems.length === 0 ? (
+          <ContentContainer className={styles["empty-state"]}>
+            <Text variant="h2" style={{ color: "white" }}>
+              {searchQuery
+                ? "No matching shopping list items found"
+                : "No shopping list items found"}
             </Text>
-          )}
-        </ContentContainer>
-      ) : (
-        sortedItems.map((listItem: ListItem) => (
-          <ListItemCard
-            key={listItem.id}
-            imgLink={listItem.imgLink}
-            itemName={listItem.name}
-            itemDescription={listItem.description}
-            itemQuantity={listItem.quantity}
-            onClick={() => navigateToListItems(listItem.id)}
-          />
-        ))
-      )}
+            {!searchQuery && (
+              <Text variant="h3" style={{ color: "white" }}>
+                Add shopping list items
+              </Text>
+            )}
+          </ContentContainer>
+        ) : (
+          sortedItems.map((listItem: ListItem) => (
+            <ListItemCard
+              key={listItem.id}
+              imgLink={listItem.imgLink}
+              itemName={listItem.name}
+              itemDescription={listItem.description}
+              itemQuantity={listItem.quantity}
+              onClick={() => navigateToListItems(listItem.id)}
+            />
+          ))
+        )}
+      </div>
     </ContentContainer>
   );
 };

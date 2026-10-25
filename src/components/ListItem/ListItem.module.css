@@ -9,15 +9,28 @@
   padding: 20px;
   width: calc(100%-40px);
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  @media screen and (min-width: 426px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+
   @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+  }
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(3, 2fr);
+  }
+  @media screen and (max-width: 425px) {
+    grid-template-columns: repeat(2, 2fr);
+  }
+  @media screen and (max-width: 320px) {
+    grid-template-columns: 1fr;
   }
 }
 
