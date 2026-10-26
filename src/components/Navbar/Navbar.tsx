@@ -18,7 +18,7 @@ const Navbar = () => {
       <ContentContainer className={styles["glass-effect"]}>
         <div className={styles["nav-container"]}>
           <div className={styles.logo}>
-            <Text variant="h2">Brand-Name</Text>
+            <Text variant="h2">List-It!</Text>
           </div>
 
           <div className={styles.hamburger} onClick={handleIconClick}>

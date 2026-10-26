@@ -1,0 +1,17 @@
+button {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  padding: 10px 20px;
+}
+
+.actions-container {
+  display: flex;
+  color: var(--text-color);
+  justify-content: space-between;
+  align-items: center;
+}

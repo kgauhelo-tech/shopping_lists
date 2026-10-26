@@ -32,12 +32,14 @@ export const Profile = () => {
   };
 
   return (
-    <ContentContainer>
+    <ContentContainer className={styles.profile}>
       <div className={styles["actions-container"]}>
-        <button onClick={handleUpdateProfile}>
-          <Edit2 />
-          <Text>Update Details</Text>
-        </button>
+        <Text variant="h2">Profile</Text>
+        <div>
+          <button onClick={handleUpdateProfile}>
+            <Text style={{ color: "white" }}>Update Details</Text>
+          </button>
+        </div>
       </div>
       <div className={styles["details-container"]}>
         <Text variant="h2">User Profile</Text>
