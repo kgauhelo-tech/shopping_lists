@@ -1,12 +1,14 @@
-button {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Main profile view container */
 .profile {
-  padding: 10px 20px;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: var(--content-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .actions-container {
@@ -14,4 +16,91 @@ button {
   color: var(--text-color);
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: var(--content-dark);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+/* Button general overrides */
+button {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  background: var(--content-dark);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  color: var(--text-color);
+  transition: opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* --- UpdateProfile / Registration Form Container --- */
+
+.reg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  padding: 1rem;
+}
+
+.reg-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  background: var(--content-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 850px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: var(--text-color);
+}
+
+.left-container {
+  background: var(--content-dark);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.right-container {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+/* Responsive layout adjustments for smaller screens */
+@media (max-width: 768px) {
+  .reg-content {
+    grid-template-columns: 1fr;
+  }
+  .left-container {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+  .right-container {
+    padding: 1.5rem;
+  }
 }

@@ -12,12 +12,12 @@
   padding: 0 10px;
 
   width: calc(100% - 20px);
-  border: 1px solid rgb(20, 20, 20);
+  border: var(--content-dark);
   outline: none;
 }
 
 .input-label {
-  color: rgb(20, 20, 20);
+  color: var(--text-color);
 }
 
 .input-error {
