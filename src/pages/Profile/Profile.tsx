@@ -5,7 +5,6 @@ import styles from "./Profile.module.css";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { ContentContainer } from "../../components/ContentContainer";
 import { fetchUsers } from "../../redux/slices/authSlice";
-import { Edit2 } from "reicon-react";
 import { useNavigate } from "react-router";
 
 export const Profile = () => {
